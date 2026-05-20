@@ -5,25 +5,15 @@ import { BRAND } from '../data'
 
 export default function S01_Title({ num, total }) {
   return (
-    <SlideShell num={num} total={total} eyebrow="Презентация для партнёров" hideChrome={false}>
-      {/* Panda as slide background — overrides default misty-bg for S1 only */}
-      <img
-        src="/panda.png"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        style={{ opacity: 0.6 }}
-      />
-      {/* Soft left-to-right fade so text stays readable on the left */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(90deg, rgba(251,246,236,0.78) 0%, rgba(251,246,236,0.45) 45%, rgba(251,246,236,0.15) 75%, rgba(251,246,236,0) 100%)',
-        }}
-      />
-
+    <SlideShell
+      num={num}
+      total={total}
+      eyebrow="Презентация для партнёров"
+      hideChrome={false}
+      bgImage="/panda.png"
+      bgImageOpacity={0.6}
+      bgImageOverlay="linear-gradient(90deg, rgba(251,246,236,0.78) 0%, rgba(251,246,236,0.45) 45%, rgba(251,246,236,0.15) 75%, rgba(251,246,236,0) 100%)"
+    >
       <div className="relative z-10 h-full w-full flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}

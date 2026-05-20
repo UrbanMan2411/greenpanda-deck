@@ -9,25 +9,52 @@ const enter = {
 }
 
 /**
- * Shared chrome for every slide:
- *  - Header band with brand + slide number
- *  - Bamboo/mountain backdrop is baked into the bg image; SVG decoration disabled
- *  - Footer hairline + small caption
- *  - Variant: 'light' | 'dark' | 'plain'
+ * Shared chrome for every slide.
+ * Optional bgImage prop overrides the default misty-bg with a custom image background
+ * rendered at the SlideShell root level (so it covers the entire slide-canvas,
+ * not just the padded content area).
  */
 export function SlideShell({
-  num, total, eyebrow, tone = 'light', decoration = 'none', children, hideChrome = false,
+  num, total, eyebrow,
+  tone = 'light',
+  decoration = 'none',
+  bgImage,                 // e.g. '/panda.png'
+  bgImageOpacity = 1,
+  bgImageOverlay,          // CSS background string for an overlay on top of bgImage
+  children,
+  hideChrome = false,
 }) {
-  const bg = tone === 'dark' ? 'misty-bg-dark text-paper'
-           : tone === 'plain' ? 'bg-paper text-ink-900'
-           : 'misty-bg text-ink-900'
+  const useDefaultBg = !bgImage
+  const bg = !useDefaultBg
+    ? (tone === 'dark' ? 'text-paper' : 'text-ink-900')
+    : tone === 'dark'  ? 'misty-bg-dark text-paper'
+    : tone === 'plain' ? 'bg-paper text-ink-900'
+    : 'misty-bg text-ink-900'
+
   return (
     <div
       data-slide-num={num}
       className={`relative w-full h-full overflow-hidden ${bg}`}
-      ref={undefined}
     >
-      {/* Decoration SVG removed — bg.png already has mountains + bamboo baked in */}
+      {/* Custom background image — covers entire slide canvas */}
+      {bgImage && (
+        <>
+          <img
+            src={bgImage}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            style={{ opacity: bgImageOpacity }}
+          />
+          {bgImageOverlay && (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: bgImageOverlay }}
+            />
+          )}
+        </>
+      )}
 
       {/* top bar */}
       {!hideChrome && (
@@ -53,7 +80,7 @@ export function SlideShell({
 
       {/* bottom hairline */}
       {!hideChrome && (
-        <div className="absolute bottom-0 left-[3.5%] right-[3.5%] flex items-center justify-between gap-4 pb-[1.6%]">
+        <div className="absolute bottom-0 left-[3.5%] right-[3.5%] flex items-center justify-between gap-4 pb-[1.6%] z-10">
           <div className={`flex-1 ${tone === 'dark' ? 'hairline-dark' : 'hairline'}`} />
           <div className={`text-[10px] tracking-[0.24em] uppercase font-semibold ${tone === 'dark' ? 'text-paper/45' : 'text-ink-700/45'}`}>
             GREEN PANDA · Презентация для партнёров · {new Date().getFullYear()}
