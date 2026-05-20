@@ -35,21 +35,21 @@ export function NavArrows({ onPrev, onNext, atStart, atEnd }) {
 
 export function Progress({ slides, active, onJump }) {
   return (
-    <div className="deck-progress absolute bottom-6 left-1/2 -translate-x-1/2 z-50
+    <div className="deck-progress absolute bottom-4 left-1/2 -translate-x-1/2 z-50
                     flex items-center gap-1.5 rounded-full px-4 py-2.5
-                    bg-white/80 backdrop-blur-md border border-white/70 shadow-lg">
+                    bg-black/35 backdrop-blur-md border border-white/15 shadow-lg">
       {slides.map((_, i) => (
         <button
           key={i}
           onClick={() => onJump(i)}
           aria-label={`Перейти на слайд ${i + 1}`}
           className={`relative h-2 rounded-full transition-all duration-300
-                      ${i === active ? 'w-8 bg-green-700' : 'w-2 bg-green-700/25 hover:bg-green-700/55'}`}
+                      ${i === active ? 'w-8 bg-green-300' : 'w-2 bg-white/30 hover:bg-white/55'}`}
         />
       ))}
-      <div className="ml-3 pl-3 border-l border-green-900/15 text-[11px] font-mono tabular-nums text-green-900">
+      <div className="ml-3 pl-3 border-l border-white/25 text-[11px] font-mono tabular-nums text-white/90">
         <span className="font-bold">{String(active + 1).padStart(2, '0')}</span>
-        <span className="opacity-50"> / {String(slides.length).padStart(2, '0')}</span>
+        <span className="opacity-60"> / {String(slides.length).padStart(2, '0')}</span>
       </div>
     </div>
   )
