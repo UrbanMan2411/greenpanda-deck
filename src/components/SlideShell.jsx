@@ -10,9 +10,10 @@ const enter = {
 
 /**
  * Shared chrome for every slide.
- * Optional bgImage prop overrides the default misty-bg with a custom image background
- * rendered at the SlideShell root level (so it covers the entire slide-canvas).
- * `bgImageScale` (e.g. 1.1) lets you zoom the bg in to crush any aspect-ratio gaps.
+ * - bgImage / bgImageOpacity / bgImageScale / bgImagePosition / bgImageOverlay — custom bg image
+ * - hideChrome — hide both top and bottom chrome bars
+ * - hideHeader — hide only the top chrome (brand + slide number)
+ * - hideFooter — hide only the bottom chrome (hairline + footer caption)
  */
 export function SlideShell({
   num, total, eyebrow,
@@ -25,7 +26,11 @@ export function SlideShell({
   bgImageOverlay,
   children,
   hideChrome = false,
+  hideHeader = false,
+  hideFooter = false,
 }) {
+  const showHeader = !hideChrome && !hideHeader
+  const showFooter = !hideChrome && !hideFooter
   const useDefaultBg = !bgImage
   const bg = !useDefaultBg
     ? (tone === 'dark' ? 'text-paper' : 'text-ink-900')
@@ -38,7 +43,6 @@ export function SlideShell({
       data-slide-num={num}
       className={`relative w-full h-full overflow-hidden ${bg}`}
     >
-      {/* Custom background image — uses CSS background-image (always covers) */}
       {bgImage && (
         <>
           <div
@@ -64,8 +68,7 @@ export function SlideShell({
         </>
       )}
 
-      {/* top bar */}
-      {!hideChrome && (
+      {showHeader && (
         <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-[3.5%] py-[1.8%]">
           <BrandMark tone={tone === 'dark' ? 'light' : 'dark'} />
           <div className={`flex items-baseline gap-3 ${tone === 'dark' ? 'text-paper/70' : 'text-ink-700/70'}`}>
@@ -78,7 +81,6 @@ export function SlideShell({
         </div>
       )}
 
-      {/* content */}
       <motion.div
         className="relative z-[5] w-full h-full pt-[7%] pb-[6%] px-[5.5%]"
         {...enter}
@@ -86,8 +88,7 @@ export function SlideShell({
         {children}
       </motion.div>
 
-      {/* bottom hairline */}
-      {!hideChrome && (
+      {showFooter && (
         <div className="absolute bottom-0 left-[3.5%] right-[3.5%] flex items-center justify-between gap-4 pb-[1.6%] z-10">
           <div className={`flex-1 ${tone === 'dark' ? 'hairline-dark' : 'hairline'}`} />
           <div className={`text-[10px] tracking-[0.24em] uppercase font-semibold ${tone === 'dark' ? 'text-paper/45' : 'text-ink-700/45'}`}>
