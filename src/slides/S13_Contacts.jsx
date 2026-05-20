@@ -1,38 +1,28 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Phone, Mail, Globe, MapPin, User2, ArrowRight } from 'lucide-react'
+import { Phone, Mail, Globe, MapPin, User2 } from 'lucide-react'
 import { SlideShell } from '../components/SlideShell'
-import { SunOrb } from '../components/Decoration'
 import { BRAND, CONTACTS } from '../data'
 
 export default function S13_Contacts({ num, total }) {
   return (
-    <SlideShell num={num} total={total} eyebrow="12 · Контакты и сотрудничество" tone="dark" decoration="bamboo">
-      <SunOrb className="top-[10%] right-[6%] w-[280px] h-[280px]" />
+    <SlideShell num={num} total={total} eyebrow="12 · Контакты и сотрудничество" tone="dark">
       <div className="grid grid-cols-12 gap-10 h-full">
         <div className="col-span-7 flex flex-col justify-center">
           <div className="eyebrow text-sage mb-4">Приглашаем к сотрудничеству</div>
           <motion.h1
             initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
-            className="display font-extrabold text-[clamp(46px,5.4vw,86px)] text-paper leading-[0.95]"
+            className="display font-extrabold text-[clamp(36px,4.4vw,70px)] text-paper leading-[0.95]"
           >
-            Давайте <span className="text-green-300 italic font-light" style={{ fontFamily: 'Georgia, serif' }}>дружить.</span>
+            Давайте <span className="text-green-300">дружить.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-6 text-paper/80 text-[clamp(15px,1.2vw,20px)] leading-relaxed max-w-lg"
+            className="mt-6 text-paper/80 text-[clamp(13px,1.05vw,18px)] leading-relaxed max-w-lg"
           >
-            Готовы обсудить контракт, СТМ, эксклюзив по региону или маркетплейс-партнёрство.
+            Готовы обсудить контракт, СТМ или поставки в ваш регион.
             Подготовим коммерческое предложение под ваш профиль и объём в течение одного рабочего дня.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-10 inline-flex items-center gap-3 self-start rounded-full bg-green-500 text-green-950 px-6 py-3 font-bold text-[15px] shadow-2xl shadow-green-500/30"
-          >
-            Запросить коммерческое предложение
-            <ArrowRight size={18} strokeWidth={2.4} />
-          </motion.div>
         </div>
 
         <div className="col-span-5 flex flex-col justify-center gap-3">

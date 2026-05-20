@@ -1,23 +1,22 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { TrendingUp, Sparkles, ShoppingCart, MapPin } from 'lucide-react'
-import { SlideShell, SlideHead, GlassCard } from '../components/SlideShell'
+import { TrendingUp, Sparkles, MapPin } from 'lucide-react'
+import { SlideShell, SlideHead } from '../components/SlideShell'
 import { MARKET_KPIS, MARKET_TRENDS } from '../data'
 
-const trendIcons = [Sparkles, ShoppingCart, MapPin, TrendingUp]
+const trendIcons = [Sparkles, MapPin, TrendingUp]
 
 export default function S02_Market({ num, total }) {
   return (
-    <SlideShell num={num} total={total} eyebrow="01 · Рынок и тренды" decoration="light">
+    <SlideShell num={num} total={total} eyebrow="01 · Рынок и тренды">
       <SlideHead
         eyebrow="Рынок и тренды"
         title={<>Эко-бытовая химия — <span className="text-green-700">самая быстрорастущая категория</span> FMCG в РФ</>}
-        subtitle="Уход международных игроков, бум маркетплейсов и тренд на устойчивое потребление перестроили рынок. У локального производителя с прозрачной формулой — лучшие позиции за десятилетие."
+        subtitle="Уход международных игроков и тренд на устойчивое потребление перестроили рынок. У локального производителя с прозрачной формулой — лучшие позиции за десятилетие."
       />
 
-      <div className="mt-10 grid grid-cols-12 gap-5">
-        {/* KPI cards */}
-        <div className="col-span-12 grid grid-cols-4 gap-4">
+      <div className="mt-8 grid grid-cols-12 gap-5">
+        <div className="col-span-12 grid grid-cols-3 gap-4">
           {MARKET_KPIS.map((k, i) => (
             <motion.div
               key={i}
@@ -26,12 +25,12 @@ export default function S02_Market({ num, total }) {
               className="glass rounded-2xl p-5 flex flex-col"
             >
               <div className="flex items-baseline gap-1">
-                <span className="text-[clamp(36px,4vw,64px)] font-extrabold text-green-700 tracking-tight leading-none">
+                <span className="text-[clamp(32px,3.4vw,52px)] font-extrabold text-green-700 tracking-tight leading-none">
                   {k.value}
                 </span>
                 {k.unit && <span className="text-base font-bold text-green-700/70">{k.unit}</span>}
               </div>
-              <div className="mt-4 text-sm text-ink-700 leading-snug">{k.label}</div>
+              <div className="mt-3 text-[13px] text-ink-700 leading-snug">{k.label}</div>
               <div className="mt-3 pt-3 border-t border-ink-700/10 text-[10px] tracking-wider uppercase text-muted">
                 {k.source}
               </div>
@@ -39,8 +38,7 @@ export default function S02_Market({ num, total }) {
           ))}
         </div>
 
-        {/* Trends */}
-        <div className="col-span-12 grid grid-cols-4 gap-4 mt-2">
+        <div className="col-span-12 grid grid-cols-3 gap-4 mt-2">
           {MARKET_TRENDS.map((t, i) => {
             const Icon = trendIcons[i]
             return (

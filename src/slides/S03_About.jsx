@@ -6,7 +6,7 @@ import { ABOUT, BRAND } from '../data'
 
 export default function S03_About({ num, total }) {
   return (
-    <SlideShell num={num} total={total} eyebrow="02 · О компании-производителе" decoration="light">
+    <SlideShell num={num} total={total} eyebrow="02 · О компании-производителе">
       <SlideHead
         eyebrow="О производителе"
         title={<>Своё производство <span className="text-green-700">в Новороссийске</span> — от рецептуры до отгрузки</>}
@@ -19,7 +19,7 @@ export default function S03_About({ num, total }) {
               key={i}
               initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
-              className="text-[clamp(15px,1.15vw,19px)] leading-relaxed text-ink-700"
+              className="text-[clamp(13px,1vw,17px)] leading-relaxed text-ink-700"
             >
               {p}
             </motion.p>
@@ -30,7 +30,7 @@ export default function S03_About({ num, total }) {
               { icon: CalendarDays, label: 'Основано', val: ABOUT.founded + ' г.' },
               { icon: MapPin,       label: 'Площадка', val: ABOUT.city + ', ' + ABOUT.region },
               { icon: Factory,      label: 'Площадь',  val: '1000+ м²' },
-              { icon: Boxes,        label: 'Каталог',  val: '320+ SKU собственных рецептур' },
+              { icon: Boxes,        label: 'СТМ',      val: 'Производство под индивидуальные задачи' },
             ].map((it, i) => {
               const Icon = it.icon
               return (
@@ -45,7 +45,7 @@ export default function S03_About({ num, total }) {
                   </div>
                   <div>
                     <div className="text-[10px] uppercase tracking-widest font-semibold text-muted">{it.label}</div>
-                    <div className="text-ink-900 font-bold mt-0.5">{it.val}</div>
+                    <div className="text-ink-900 font-bold mt-0.5 text-[13px]">{it.val}</div>
                   </div>
                 </motion.div>
               )
@@ -53,7 +53,6 @@ export default function S03_About({ num, total }) {
           </div>
         </div>
 
-        {/* Big stat tiles */}
         <div className="col-span-5 grid grid-cols-2 gap-3 self-center">
           {ABOUT.stats.map((s, i) => (
             <motion.div
@@ -62,17 +61,16 @@ export default function S03_About({ num, total }) {
               transition={{ duration: 0.6, delay: 0.3 + i * 0.08 }}
               className="rounded-2xl bg-green-900 text-paper p-6 flex flex-col items-start"
             >
-              <div className="text-[clamp(36px,4vw,64px)] font-extrabold tracking-tightest leading-none text-green-100">
+              <div className="text-[clamp(28px,3vw,48px)] font-extrabold tracking-tightest leading-none text-green-100">
                 {s.v}
               </div>
-              <div className="mt-3 text-[13px] leading-snug text-paper/80">{s.t}</div>
+              <div className="mt-3 text-[12px] leading-snug text-paper/80">{s.t}</div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Identity strip */}
-      <div className="absolute bottom-[5%] left-[5.5%] right-[5.5%] text-[12px] tracking-widest uppercase text-ink-700/55 font-semibold flex items-center gap-6">
+      <div className="absolute bottom-[5%] left-[5.5%] right-[5.5%] text-[11px] tracking-widest uppercase text-ink-700/55 font-semibold flex items-center gap-6">
         <span>{BRAND.producer}</span>
         <span className="opacity-30">·</span>
         <span>ИНН {BRAND.inn}</span>

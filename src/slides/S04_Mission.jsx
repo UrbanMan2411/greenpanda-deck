@@ -13,12 +13,9 @@ export default function S04_Mission({ num, total }) {
           <motion.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="display font-extrabold text-[clamp(34px,3.4vw,54px)] text-paper leading-tight"
+            className="display font-extrabold text-[clamp(28px,2.8vw,44px)] text-paper leading-tight"
           >
-            Чистый дом{' '}
-            <span className="italic font-light" style={{ fontFamily: 'Georgia, serif' }}>и</span>{' '}
-            чистая природа —{' '}
-            <span className="text-green-300">не альтернатива.</span>
+            Чистый дом и чистая природа — <span className="text-green-300">не альтернатива.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}

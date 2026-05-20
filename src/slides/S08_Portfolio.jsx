@@ -6,10 +6,10 @@ import { PORTFOLIO } from '../data'
 
 export default function S08_Portfolio({ num, total }) {
   return (
-    <SlideShell num={num} total={total} eyebrow="07 · Ассортиментный портфель" decoration="light">
+    <SlideShell num={num} total={total} eyebrow="07 · Ассортиментный портфель">
       <SlideHead
         eyebrow="Портфель"
-        title={<>Шесть направлений, <span className="text-green-700">один бренд — весь дом и B2B</span></>}
+        title={<>Основные <span className="text-green-700">SKU линейки</span> Green Panda</>}
         subtitle={PORTFOLIO.intro}
       />
 
@@ -23,8 +23,13 @@ export default function S08_Portfolio({ num, total }) {
               transition={{ duration: 0.45, delay: 0.1 + i * 0.06 }}
               className="rounded-2xl bg-white/70 border border-line p-5 flex gap-4 items-center group hover:bg-white transition"
             >
-              <div className="w-14 h-14 rounded-xl bg-green-50 text-green-700 flex items-center justify-center shrink-0">
-                <Icon size={26} strokeWidth={2} />
+              {/* Sticker slot — swap to <img src={`/sku/${p.sku}.png`}> once labels are provided */}
+              <div className="w-16 h-16 rounded-xl bg-green-50 text-green-700 flex items-center justify-center shrink-0 overflow-hidden">
+                {p.label ? (
+                  <img src={p.label} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <Icon size={28} strokeWidth={2} />
+                )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="font-bold text-ink-900 text-[15px] leading-tight">{p.name}</div>
@@ -39,23 +44,6 @@ export default function S08_Portfolio({ num, total }) {
           )
         })}
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="absolute bottom-[5.5%] left-[5.5%] right-[5.5%] grid grid-cols-3 gap-4"
-      >
-        {[
-          { v: '6+',  t: 'базовых SKU Green Panda' },
-          { v: '3',   t: 'формата фасовки: 0,75 · 1,5 · 5 л' },
-          { v: '320+', t: 'SKU в общем каталоге производителя' },
-        ].map((s, i) => (
-          <div key={i} className="rounded-xl bg-green-900 text-paper p-3 px-5 flex items-baseline gap-4">
-            <span className="text-2xl font-extrabold text-green-300">{s.v}</span>
-            <span className="text-[12px] text-paper/80">{s.t}</span>
-          </div>
-        ))}
-      </motion.div>
     </SlideShell>
   )
 }

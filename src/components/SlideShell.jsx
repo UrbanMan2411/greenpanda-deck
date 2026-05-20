@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { BrandMark } from './Brand'
-import { MistyMountains, BambooStrip } from './Decoration'
 
 const enter = {
   initial: { opacity: 0, y: 24 },
@@ -12,12 +11,12 @@ const enter = {
 /**
  * Shared chrome for every slide:
  *  - Header band with brand + slide number
- *  - Optional decoration (mountains, bamboo strips, sun)
+ *  - Bamboo/mountain backdrop is baked into the bg image; SVG decoration disabled
  *  - Footer hairline + small caption
  *  - Variant: 'light' | 'dark' | 'plain'
  */
 export function SlideShell({
-  num, total, eyebrow, tone = 'light', decoration = 'light', children, hideChrome = false,
+  num, total, eyebrow, tone = 'light', decoration = 'none', children, hideChrome = false,
 }) {
   const bg = tone === 'dark' ? 'misty-bg-dark text-paper'
            : tone === 'plain' ? 'bg-paper text-ink-900'
@@ -28,16 +27,7 @@ export function SlideShell({
       className={`relative w-full h-full overflow-hidden ${bg}`}
       ref={undefined}
     >
-      {/* decoration layer */}
-      {decoration !== 'none' && (
-        <MistyMountains tone={tone === 'dark' ? 'dark' : 'light'} />
-      )}
-      {decoration === 'bamboo' && (
-        <>
-          <BambooStrip side="left"  tone={tone === 'dark' ? 'dark' : 'light'} />
-          <BambooStrip side="right" tone={tone === 'dark' ? 'dark' : 'light'} />
-        </>
-      )}
+      {/* Decoration SVG removed — bg.png already has mountains + bamboo baked in */}
 
       {/* top bar */}
       {!hideChrome && (
@@ -99,11 +89,11 @@ export function SlideHead({ eyebrow, title, subtitle, tone = 'light' }) {
           {eyebrow}
         </div>
       )}
-      <h1 className={`display font-extrabold text-[clamp(40px,5.4vw,84px)] ${tone === 'dark' ? 'text-paper' : 'text-ink-900'}`}>
+      <h1 className={`display font-extrabold text-[clamp(28px,3.6vw,56px)] ${tone === 'dark' ? 'text-paper' : 'text-ink-900'}`}>
         {title}
       </h1>
       {subtitle && (
-        <p className={`mt-5 text-[clamp(15px,1.25vw,21px)] leading-relaxed max-w-[600px] ${sub}`}>
+        <p className={`mt-4 text-[clamp(13px,1.05vw,18px)] leading-relaxed max-w-[600px] ${sub}`}>
           {subtitle}
         </p>
       )}

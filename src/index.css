@@ -83,18 +83,18 @@ body {
 /* Display headlines */
 .display { letter-spacing: -0.03em; line-height: 1.02; }
 
-/* Soft "misty mountain" radial gradient base */
+/* Misty bamboo-mountain backdrop (image baked-in, applied to all slides) */
 .misty-bg {
   background:
-    radial-gradient(1200px 700px at 50% 110%, rgba(31, 176, 97, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 90% -10%, rgba(255, 200, 130, 0.18), transparent 55%),
-    linear-gradient(180deg, #FBF6EC 0%, #F0EAD8 100%);
+    linear-gradient(180deg, rgba(251, 246, 236, 0.55) 0%, rgba(245, 243, 232, 0.72) 100%),
+    url('/bg.png') center/cover no-repeat,
+    #FBF6EC;
 }
 .misty-bg-dark {
   background:
-    radial-gradient(1200px 700px at 50% 110%, rgba(31, 176, 97, 0.28), transparent 60%),
-    radial-gradient(900px 500px at 10% -10%, rgba(16, 116, 63, 0.4), transparent 55%),
-    linear-gradient(180deg, #0F3D2E 0%, #0A261C 100%);
+    linear-gradient(180deg, rgba(15, 61, 46, 0.86) 0%, rgba(10, 38, 28, 0.94) 100%),
+    url('/bg.png') center/cover no-repeat,
+    #0A261C;
 }
 
 /* Print: 13 slides, each on its own page, landscape A4 */
