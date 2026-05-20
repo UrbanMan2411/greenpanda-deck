@@ -11,16 +11,18 @@ const enter = {
 /**
  * Shared chrome for every slide.
  * Optional bgImage prop overrides the default misty-bg with a custom image background
- * rendered at the SlideShell root level (so it covers the entire slide-canvas,
- * not just the padded content area).
+ * rendered at the SlideShell root level (so it covers the entire slide-canvas).
+ * `bgImageScale` (e.g. 1.1) lets you zoom the bg in to crush any aspect-ratio gaps.
  */
 export function SlideShell({
   num, total, eyebrow,
   tone = 'light',
   decoration = 'none',
-  bgImage,                 // e.g. '/panda.png'
+  bgImage,
   bgImageOpacity = 1,
-  bgImageOverlay,          // CSS background string for an overlay on top of bgImage
+  bgImageScale = 1,
+  bgImagePosition = 'center',
+  bgImageOverlay,
   children,
   hideChrome = false,
 }) {
@@ -36,15 +38,21 @@ export function SlideShell({
       data-slide-num={num}
       className={`relative w-full h-full overflow-hidden ${bg}`}
     >
-      {/* Custom background image — covers entire slide canvas */}
+      {/* Custom background image — uses CSS background-image (always covers) */}
       {bgImage && (
         <>
-          <img
-            src={bgImage}
-            alt=""
+          <div
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            style={{ opacity: bgImageOpacity }}
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: `url("${bgImage}")`,
+              backgroundSize: 'cover',
+              backgroundPosition: bgImagePosition,
+              backgroundRepeat: 'no-repeat',
+              opacity: bgImageOpacity,
+              transform: bgImageScale !== 1 ? `scale(${bgImageScale})` : undefined,
+              transformOrigin: 'center',
+            }}
           />
           {bgImageOverlay && (
             <div
