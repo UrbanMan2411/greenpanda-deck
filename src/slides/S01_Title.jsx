@@ -12,8 +12,8 @@ export default function S01_Title({ num, total }) {
       hideFooter
       bgImage="/panda.png"
       bgImageOpacity={0.6}
-      bgImageScale={1.2}
-      bgImagePosition="center center"
+      bgImageScale={1.15}
+      bgImagePosition="center 55%"
       bgImageOverlay="linear-gradient(90deg, rgba(251,246,236,0.78) 0%, rgba(251,246,236,0.45) 45%, rgba(251,246,236,0.15) 75%, rgba(251,246,236,0) 100%)"
     >
       <div className="relative z-10 h-full w-full flex flex-col justify-center">

@@ -10,7 +10,7 @@ const enter = {
 
 /**
  * Shared chrome for every slide.
- * bgImage rendering: uses <img> with -inset overshoot (always covers, even past container edges).
+ * bgImage: CSS background-image with cover. Optional scale (transform) to zoom in.
  */
 export function SlideShell({
   num, total, eyebrow,
@@ -18,7 +18,7 @@ export function SlideShell({
   decoration = 'none',
   bgImage,
   bgImageOpacity = 1,
-  bgImageScale = 1.2,     // 1.2 = 20% bigger than container, overflow cropped by parent
+  bgImageScale = 1,
   bgImagePosition = 'center',
   bgImageOverlay,
   children,
@@ -30,15 +30,10 @@ export function SlideShell({
   const showFooter = !hideChrome && !hideFooter
   const useDefaultBg = !bgImage
   const bg = !useDefaultBg
-    ? (tone === 'dark' ? 'bg-green-950 text-paper' : 'bg-paper text-ink-900')
+    ? (tone === 'dark' ? 'text-paper' : 'text-ink-900')
     : tone === 'dark'  ? 'misty-bg-dark text-paper'
     : tone === 'plain' ? 'bg-paper text-ink-900'
     : 'misty-bg text-ink-900'
-
-  // overshoot percentages: half of (scale - 1) * 100
-  const overshoot = ((bgImageScale - 1) / 2) * 100   // 1.2 → 10%
-  const overshootPct = `-${overshoot}%`
-  const sizePct = `${bgImageScale * 100}%`
 
   return (
     <div
@@ -47,19 +42,17 @@ export function SlideShell({
     >
       {bgImage && (
         <>
-          <img
-            src={bgImage}
-            alt=""
+          <div
             aria-hidden="true"
-            className="absolute pointer-events-none"
+            className="absolute inset-0 pointer-events-none"
             style={{
-              top: overshootPct,
-              left: overshootPct,
-              width: sizePct,
-              height: sizePct,
-              objectFit: 'cover',
-              objectPosition: bgImagePosition,
+              backgroundImage: `url("${bgImage}")`,
+              backgroundSize: 'cover',
+              backgroundPosition: bgImagePosition,
+              backgroundRepeat: 'no-repeat',
               opacity: bgImageOpacity,
+              transform: bgImageScale !== 1 ? `scale(${bgImageScale})` : undefined,
+              transformOrigin: 'center',
             }}
           />
           {bgImageOverlay && (
