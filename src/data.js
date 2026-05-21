@@ -10,14 +10,14 @@ export const BRAND = {
 }
 
 export const CONTACTS = {
-  phones: ['[ЗАМЕНИ: +7 (8617) 60-00-88]', '[ЗАМЕНИ: +7 (8617) 71-95-55]'],
-  emails: ['[ЗАМЕНИ: sales@kubanbithim.ru]', '[ЗАМЕНИ: info@kubanbithim.ru]'],
-  site:   '[ЗАМЕНИ: kubanbithim.ru]',
+  phones: ['+7 (8617) 60-00-88', '+7 (8617) 71-95-55'],
+  emails: ['sales@greenpanda-eco.ru', 'info@greenpanda-eco.ru'],
+  site:   'greenpanda-eco.ru',
   manager: {
     name:  '[ЗАМЕНИ: Имя Фамилия]',
     role:  '[ЗАМЕНИ: Персональный менеджер для партнёров]',
     phone: '[ЗАМЕНИ: +7 (___) ___-__-__]',
-    email: '[ЗАМЕНИ: manager@kubanbithim.ru]',
+    email: '[ЗАМЕНИ: manager@greenpanda-eco.ru]',
   },
 }
 

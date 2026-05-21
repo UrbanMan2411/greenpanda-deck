@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
 import { SLIDES } from './slides'
 import { NavArrows, Progress, ExportControls } from './components/Nav'
 
@@ -97,16 +98,36 @@ export default function App() {
     }
   }, [active])
 
-  // Export whole deck — fan all slides to print, then trigger window.print()
+  // Export whole deck as a single cohesive PDF (one slide per landscape
+  // page) via html2canvas → jsPDF. No browser print dialog, no page splits.
   const exportPdf = useCallback(async () => {
     setBusy(true)
     setPrintMode(true)
-    // Wait a frame so React mounts the stack
+    // Mount the hidden stack of all slides, let Framer/images settle
     await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
-    // Tiny delay for Framer Motion + image decoding inside slides
-    await new Promise((r) => setTimeout(r, 400))
-    window.print()
-    setTimeout(() => { setPrintMode(false); setBusy(false) }, 600)
+    await new Promise((r) => setTimeout(r, 800))
+    try {
+      const canvases = stackRef.current?.querySelectorAll('.slide-canvas') || []
+      if (!canvases.length) throw new Error('Слайды не отрисованы')
+      // 16:9 landscape page in pt (PowerPoint-like 1280×720 → use mm A-ish)
+      const PW = 1280, PH = 720
+      const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [PW, PH] })
+      for (let i = 0; i < canvases.length; i++) {
+        const c = await html2canvas(canvases[i], {
+          backgroundColor: '#FBF6EC', scale: 2, useCORS: true, logging: false,
+        })
+        const img = c.toDataURL('image/jpeg', 0.92)
+        if (i > 0) pdf.addPage([PW, PH], 'landscape')
+        pdf.addImage(img, 'JPEG', 0, 0, PW, PH)
+      }
+      pdf.save('greenpanda-presentation.pdf')
+    } catch (e) {
+      console.error('PDF export failed', e)
+      alert('Не удалось собрать PDF. Проверьте консоль.')
+    } finally {
+      setPrintMode(false)
+      setBusy(false)
+    }
   }, [])
 
   const Active = SLIDES[active].component
