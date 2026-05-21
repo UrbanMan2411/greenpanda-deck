@@ -27,11 +27,11 @@ export default function S12_Roadmap({ num, total }) {
                 {r.period}
               </div>
               <div className="self-center w-px h-6 bg-green-700/40" />
-              <div className="rounded-2xl bg-white/70 border border-line p-6 flex flex-col gap-3">
-                <div className="font-bold text-ink-900 text-[17px]">{r.title}</div>
+              <div className="flex-1 rounded-2xl bg-white/70 border border-line p-5 flex flex-col gap-2.5">
+                <div className="font-bold text-ink-900 text-[16px]">{r.title}</div>
                 <ul className="flex flex-col gap-2">
                   {r.items.map((it, j) => (
-                    <li key={j} className="flex gap-2 items-start text-[13px] text-ink-700 leading-snug">
+                    <li key={j} className="flex gap-2 items-start text-[12.5px] text-ink-700 leading-snug">
                       <Sparkles size={14} strokeWidth={2.4} className="text-green-600 mt-0.5 shrink-0" />
                       <span>{it}</span>
                     </li>
