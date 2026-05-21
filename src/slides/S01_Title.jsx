@@ -11,10 +11,10 @@ export default function S01_Title({ num, total }) {
       eyebrow="Презентация для партнёров"
       hideFooter
       bgImage="/panda.png"
-      bgImageOpacity={0.6}
+      bgImageOpacity={0.95}
       bgImageScale={1.15}
       bgImagePosition="center 55%"
-      bgImageOverlay="linear-gradient(90deg, rgba(251,246,236,0.78) 0%, rgba(251,246,236,0.45) 45%, rgba(251,246,236,0.15) 75%, rgba(251,246,236,0) 100%)"
+      bgImageOverlay="linear-gradient(90deg, rgba(251,246,236,0.92) 0%, rgba(251,246,236,0.7) 32%, rgba(251,246,236,0.28) 60%, rgba(251,246,236,0) 82%)"
     >
       <div className="relative z-10 h-full w-full flex flex-col justify-center">
         <motion.div
