@@ -35,19 +35,19 @@ export function NavArrows({ onPrev, onNext, atStart, atEnd }) {
 
 export function Progress({ slides, active, onJump }) {
   return (
-    <div className="deck-progress absolute bottom-6 left-1/2 -translate-x-1/2 z-50
-                    flex items-center gap-1.5 rounded-full px-4 py-2.5
+    <div className="deck-progress absolute bottom-3 left-1/2 -translate-x-1/2 z-50
+                    flex items-center gap-1 rounded-full px-2 py-1
                     bg-white/80 backdrop-blur-md border border-white/70 shadow-lg">
       {slides.map((_, i) => (
         <button
           key={i}
           onClick={() => onJump(i)}
           aria-label={`Перейти на слайд ${i + 1}`}
-          className={`relative h-2 rounded-full transition-all duration-300
-                      ${i === active ? 'w-8 bg-green-700' : 'w-2 bg-green-700/25 hover:bg-green-700/55'}`}
+          className={`relative h-1 rounded-full transition-all duration-300
+                      ${i === active ? 'w-4 bg-green-700' : 'w-1 bg-green-700/25 hover:bg-green-700/55'}`}
         />
       ))}
-      <div className="ml-3 pl-3 border-l border-green-900/15 text-[11px] font-mono tabular-nums text-green-900">
+      <div className="ml-1.5 pl-1.5 border-l border-green-900/15 text-[9px] font-mono tabular-nums text-green-900">
         <span className="font-bold">{String(active + 1).padStart(2, '0')}</span>
         <span className="opacity-50"> / {String(slides.length).padStart(2, '0')}</span>
       </div>
@@ -57,19 +57,19 @@ export function Progress({ slides, active, onJump }) {
 
 export function ExportControls({ onExportPdf, onExportSlide, busy }) {
   return (
-    <div className="deck-export absolute top-4 right-4 z-50 flex items-center gap-2">
+    <div className="deck-export absolute top-3 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5">
       <motion.button
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
         onClick={onExportSlide}
         disabled={busy}
         title="Скачать текущий слайд как PNG"
-        className="inline-flex items-center gap-2 rounded-full px-4 py-2.5
-                   bg-white/85 backdrop-blur-md text-green-900 text-[13px] font-semibold
+        className="inline-flex items-center gap-1 rounded-full px-2.5 py-1
+                   bg-white/85 backdrop-blur-md text-green-900 text-[11px] font-semibold
                    border border-white/70 shadow-md hover:bg-white transition
                    disabled:opacity-60 disabled:pointer-events-none"
       >
-        <ImageIcon size={16} strokeWidth={2.2} /> PNG
+        <ImageIcon size={12} strokeWidth={2.2} /> PNG
       </motion.button>
       <motion.button
         whileHover={{ scale: 1.03 }}
@@ -77,12 +77,12 @@ export function ExportControls({ onExportPdf, onExportSlide, busy }) {
         onClick={onExportPdf}
         disabled={busy}
         title="Скачать всю презентацию в PDF"
-        className="inline-flex items-center gap-2 rounded-full px-4 py-2.5
-                   bg-green-900 text-paper text-[13px] font-semibold
+        className="inline-flex items-center gap-1 rounded-full px-2.5 py-1
+                   bg-green-900 text-paper text-[11px] font-semibold
                    border border-white/15 shadow-md hover:bg-green-800 transition
                    disabled:opacity-60 disabled:pointer-events-none"
       >
-        <Download size={16} strokeWidth={2.2} /> PDF
+        <Download size={12} strokeWidth={2.2} /> PDF
       </motion.button>
     </div>
   )
