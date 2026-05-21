@@ -57,6 +57,22 @@ export default function S08_Portfolio({ num, total }) {
           )
         })}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.55 }}
+        className="mt-4 rounded-2xl border border-dashed border-green-700/40 bg-green-50/60 px-5 py-3.5 flex items-center gap-4"
+      >
+        <div className="w-9 h-9 rounded-lg bg-green-700 text-paper flex items-center justify-center shrink-0">
+          <Icons.Sparkles size={18} strokeWidth={2.2} />
+        </div>
+        <div className="min-w-0">
+          <div className="font-extrabold text-green-800 text-[15px] leading-tight">Скоро новинки</div>
+          <div className="text-[12.5px] text-ink-700/85 leading-snug mt-0.5">
+            Пятновыводитель, кондиционер для белья, стеклоомывающая жидкость и многое другое
+          </div>
+        </div>
+      </motion.div>
     </SlideShell>
   )
 }
