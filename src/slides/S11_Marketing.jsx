@@ -13,7 +13,7 @@ export default function S11_Marketing({ num, total }) {
         subtitle="Готовый контент, совместные промо, аналитика и B2B-брендбук — всё, что помогает дистрибьютору и оптовому клиенту разогнать вторичные продажи."
       />
 
-      <div className="mt-6 grid grid-cols-3 gap-3">
+      <div className="mt-6 grid grid-cols-3 auto-rows-fr gap-3">
         {MARKETING_SUPPORT.map((m, i) => {
           const Icon = Icons[m.icon] || Icons.Megaphone
           return (
