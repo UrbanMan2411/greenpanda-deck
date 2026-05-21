@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Phone, Mail, Globe, MapPin, User2 } from 'lucide-react'
+import { Phone, Mail, Globe, MapPin } from 'lucide-react'
 import { SlideShell } from '../components/SlideShell'
 import { BRAND, CONTACTS } from '../data'
 
@@ -35,21 +35,6 @@ export default function S13_Contacts({ num, total }) {
             <Row icon={Phone}>{CONTACTS.phones.join(' · ')}</Row>
             <Row icon={Mail}>{CONTACTS.emails.join(' · ')}</Row>
             <Row icon={Globe}>{CONTACTS.site}</Row>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 14 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.35 }}
-            className="rounded-2xl bg-green-500/15 border border-green-300/30 p-5 flex items-start gap-3"
-          >
-            <div className="w-11 h-11 rounded-full bg-green-300 text-green-950 flex items-center justify-center shrink-0">
-              <User2 size={20} strokeWidth={2.2} />
-            </div>
-            <div>
-              <div className="eyebrow text-sage mb-1">Персональный менеджер</div>
-              <div className="font-bold text-paper text-[15px]">{CONTACTS.manager.name}</div>
-              <div className="text-[12.5px] text-paper/70 mt-0.5">{CONTACTS.manager.role}</div>
-              <div className="text-[12.5px] text-paper/85 mt-2">{CONTACTS.manager.phone} · {CONTACTS.manager.email}</div>
-            </div>
           </motion.div>
         </div>
       </div>
