@@ -2,7 +2,6 @@ import S01 from './S01_Title'
 import S02 from './S02_Market'
 import S03 from './S03_About'
 import S04 from './S04_Mission'
-import S05 from './S05_Positioning'
 import S06 from './S06_Audience'
 import S07 from './S07_Channels'
 import S08 from './S08_Portfolio'
@@ -19,7 +18,6 @@ export const SLIDES = [
   { id: 'market',      title: 'Рынок и тренды',                  component: S02 },
   { id: 'about',       title: 'О компании-производителе',        component: S03 },
   { id: 'mission',     title: 'Миссия и ценности',               component: S04 },
-  { id: 'positioning', title: 'Позиционирование и УТП',          component: S05 },
   { id: 'audience',    title: 'Целевая аудитория',               component: S06 },
   { id: 'channels',    title: 'Каналы продаж',                   component: S07 },
   { id: 'portfolio',   title: 'Ассортиментный портфель',         component: S08 },

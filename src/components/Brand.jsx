@@ -15,9 +15,16 @@ export function BrandMark({ tone = 'dark', size = 28 }) {
           height: size + 14,
           width: 'auto',
           display: 'block',
-          // recolor the grey wordmark to pure white + dark halo so it
-          // reads on both light (cream) and dark slides
-          filter: 'brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0,0,0,.5)) drop-shadow(0 0 5px rgba(0,0,0,.35))',
+          // white wordmark with a thin dark outline (stacked tight
+          // drop-shadows on 4 sides) so it reads on any background
+          filter: [
+            'brightness(0) invert(1)',
+            'drop-shadow(1px 0 0 rgba(10,38,28,.85))',
+            'drop-shadow(-1px 0 0 rgba(10,38,28,.85))',
+            'drop-shadow(0 1px 0 rgba(10,38,28,.85))',
+            'drop-shadow(0 -1px 0 rgba(10,38,28,.85))',
+            'drop-shadow(0 0 4px rgba(0,0,0,.35))',
+          ].join(' '),
         }}
       />
     </div>
